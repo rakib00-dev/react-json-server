@@ -4,6 +4,17 @@ import { useEffect, useState } from 'react';
 import TakeInput from './components/TakeInput';
 import AddData from './components/AddData';
 
+const postingData = {
+  id: 3,
+  title: 'Using Framer Motion for Animations',
+  author: 'Emily Carter',
+  date: '2025-05-18',
+  content:
+    'Framer Motion is a popular animation library for React. It makes creating complex animations simple and intuitive.',
+  tags: ['Animation', 'Framer Motion', 'React'],
+  image: 'https://example.com/images/framer-motion.jpg',
+};
+
 function App() {
   const [data, setData] = useState([]);
 
@@ -16,7 +27,7 @@ function App() {
     fetchData();
   }, []);
 
-  console.log(data);
+  // const addBlog = ()
 
   return (
     <div className="m-10 grid gap-5">
