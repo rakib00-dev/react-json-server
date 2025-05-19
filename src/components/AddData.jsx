@@ -22,12 +22,6 @@ const AddData = ({ data }) => {
             <span>{e.date}</span>
           </div>
 
-          <span className="flex gap-3">
-            {e.tags.map((e) => (
-              <span className="bg-gray-200 py-1 px-2 rounded-sm">{e}</span>
-            ))}
-          </span>
-
           <div className="w-full flex justify-around gap-2">
             <button className="transition-all duration-300 w-full rounded-md py-2 px-2 font-bold bg-green-500 text-white cursor-pointer hover:bg-green-200 hover:text-black">
               Edit

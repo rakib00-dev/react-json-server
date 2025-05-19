@@ -5,16 +5,14 @@
       "title": "Understanding React Hooks",
       "author": "Jane Doe",
       "date": "2025-05-18",
-      "content": "In this blog post, we will explore the basics of React Hooks including useState and useEffect. These features allow you to use state and lifecycle methods in functional components.",
-      "tags": ["React", "JavaScript", "Hooks"]
+      "content": "In this blog post, we will explore the basics of React Hooks including useState and useEffect. These features allow you to use state and lifecycle methods in functional components."
     },
     {
       "id": 2,
       "title": "Styling with Tailwind CSS",
       "author": "John Smith",
       "date": "2025-05-17",
-      "content": "Tailwind CSS provides utility-first classes to build custom designs directly in your markup. Learn how to get started with Tailwind and improve your development workflow.",
-      "tags": ["CSS", "Tailwind", "Frontend"]
+      "content": "Tailwind CSS provides utility-first classes to build custom designs directly in your markup. Learn how to get started with Tailwind and improve your development workflow."
     }
   ]
 }
