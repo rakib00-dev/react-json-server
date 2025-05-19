@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddData = ({ data }) => {
+const AddData = ({ data, deleteBlog }) => {
   return (
     <div className="grid gap-5">
       {data.map((e, i) => (
@@ -25,7 +25,10 @@ const AddData = ({ data }) => {
             <button className="transition-all duration-300 w-full rounded-md py-2 px-2 font-bold bg-green-500 text-white cursor-pointer hover:bg-green-200 hover:text-black">
               Edit
             </button>
-            <button className="transition-all duration-300 w-full rounded-md py-2 px-2 font-bold bg-red-500 text-white cursor-pointer hover:bg-red-200 hover:text-black">
+            <button
+              className="transition-all duration-300 w-full rounded-md py-2 px-2 font-bold bg-red-500 text-white cursor-pointer hover:bg-red-200 hover:text-black"
+              onClick={() => deleteBlog(e.id)}
+            >
               Delete
             </button>
           </div>

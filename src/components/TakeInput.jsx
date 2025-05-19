@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react';
 
 const TakeInput = ({ addBlog }) => {
+  const [isBtnClicked, setIsBtnClicked] = useState(false);
+
   const titleRef = useRef();
   const authorRef = useRef();
   const dateRef = useRef();
@@ -8,6 +10,11 @@ const TakeInput = ({ addBlog }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    setIsBtnClicked(true);
+
+    if (isBtnClicked) return;
+
     addBlog(
       titleRef.current.value,
       authorRef.current.value,
@@ -76,6 +83,7 @@ const TakeInput = ({ addBlog }) => {
         <button
           type="submit"
           className=" text-white relative bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-6 py-3 cursor-pointer w-fit"
+          disabled={isBtnClicked}
         >
           Submit
         </button>

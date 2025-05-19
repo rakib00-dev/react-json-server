@@ -29,7 +29,7 @@ function App() {
 
   const addBlog = async (title, author, date, content) => {
     const dataType = {
-      id: Date.now(),
+      id: JSON.stringify(Date.now()),
       title,
       author,
       date,
@@ -44,10 +44,20 @@ function App() {
     });
   };
 
+  const deleteBlog = (id) => {
+    console.log('Trying to delete:', id);
+    fetch(`http://localhost:8000/blogs/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  };
+
   return (
     <div className="max-w-5xl mx-auto p-4 m-10 mt-4 grid gap-5">
       <TakeInput addBlog={addBlog} />
-      <AddData data={data} />
+      <AddData data={data} deleteBlog={deleteBlog} />
     </div>
   );
 }
