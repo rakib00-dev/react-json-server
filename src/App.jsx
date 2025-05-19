@@ -27,8 +27,21 @@ function App() {
     fetchData();
   }, []);
 
-  const addBlog = () => {
-    console.log(3);
+  const addBlog = async (title, author, date, content) => {
+    const dataType = {
+      id: Date.now(),
+      title,
+      author,
+      date,
+      content,
+    };
+    const res = await fetch('http://localhost:8000/blogs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/json',
+      },
+      body: JSON.stringify(dataType),
+    });
   };
 
   return (
