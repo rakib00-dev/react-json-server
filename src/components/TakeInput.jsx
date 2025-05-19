@@ -8,8 +8,12 @@ const TakeInput = ({ addBlog }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(23);
-    addBlog();
+    addBlog(
+      titleRef.current.value,
+      authorRef.current.value,
+      dateRef.current.value,
+      contentRef.current.value
+    );
   };
 
   return (

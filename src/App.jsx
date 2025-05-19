@@ -35,7 +35,7 @@ function App() {
       date,
       content,
     };
-    const res = await fetch('http://localhost:8000/blogs', {
+    await fetch('http://localhost:8000/blogs', {
       method: 'POST',
       headers: {
         'Content-Type': 'Application/json',
