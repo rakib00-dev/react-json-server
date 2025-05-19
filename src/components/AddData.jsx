@@ -5,7 +5,7 @@ const AddData = ({ data }) => {
     <div className="grid gap-5">
       {data.map((e, i) => (
         <div
-          className="grid max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 gap-5"
+          className="grid w-11/12 max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100  gap-5"
           key={i}
         >
           <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -24,7 +24,7 @@ const AddData = ({ data }) => {
 
           <span className="flex gap-3">
             {e.tags.map((e) => (
-              <span>{e}</span>
+              <span className="bg-gray-200 py-1 px-2 rounded-sm">{e}</span>
             ))}
           </span>
 

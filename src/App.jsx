@@ -30,7 +30,7 @@ function App() {
   // const addBlog = ()
 
   return (
-    <div className="m-10 grid gap-5">
+    <div className="max-w-5xl mx-auto p-4 m-10 mt-4 grid gap-5">
       <TakeInput />
       <AddData data={data} />
     </div>
