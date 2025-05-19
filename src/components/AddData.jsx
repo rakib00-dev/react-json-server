@@ -2,7 +2,7 @@ import React from 'react';
 
 const AddData = ({ data }) => {
   return (
-    <div className="">
+    <div className="grid gap-5">
       {data.map((e, i) => (
         <div
           className="grid max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 gap-5"
