@@ -16,6 +16,7 @@ function App() {
     fetchData();
   }, []);
 
+  // adding blogs
   const addBlog = async (title, author, date, content) => {
     const dataType = {
       id: JSON.stringify(Date.now()),
@@ -33,6 +34,7 @@ function App() {
     });
   };
 
+  // deleting blogs
   const deleteBlog = (id) => {
     console.log('Trying to delete:', id);
     fetch(`http://localhost:8000/blogs/${id}`, {
