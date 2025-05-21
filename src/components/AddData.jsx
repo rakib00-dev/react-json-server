@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const AddData = ({ data, deleteBlog, bringData }) => {
+const AddData = ({ data, deleteBlog, bringData, setIsEditClicked }) => {
   return (
     <div className="grid gap-5">
       {data.map((e, i) => (
@@ -26,7 +26,7 @@ const AddData = ({ data, deleteBlog, bringData }) => {
               className="transition-all duration-300 w-full rounded-md py-2 px-2 font-bold bg-green-500 text-white cursor-pointer hover:bg-green-200 hover:text-black"
               onClick={() => {
                 bringData(e);
-                writeData();
+                setIsEditClicked(true);
               }}
             >
               Edit

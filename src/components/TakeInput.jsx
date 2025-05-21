@@ -1,6 +1,12 @@
 import { useRef, useState } from 'react';
 
-const TakeInput = ({ addBlog, changingData }) => {
+const TakeInput = ({
+  addBlog,
+  changingData,
+  isEditClicked,
+  setIsEditClicked,
+  setChangingData,
+}) => {
   const [isBtnClicked, setIsBtnClicked] = useState(false);
 
   const titleRef = useRef();
@@ -11,17 +17,28 @@ const TakeInput = ({ addBlog, changingData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setIsBtnClicked(true);
+    if (!changingData) {
+      setIsBtnClicked(true);
 
-    if (isBtnClicked) return;
+      if (isBtnClicked) return;
 
-    addBlog(
-      titleRef.current.value,
-      authorRef.current.value,
-      dateRef.current.value,
-      contentRef.current.value
-    );
+      addBlog(
+        titleRef.current.value,
+        authorRef.current.value,
+        dateRef.current.value,
+        contentRef.current.value
+      );
+    }
   };
+
+  if (changingData) {
+    titleRef.current.value = changingData.title;
+    authorRef.current.value = changingData.author;
+    dateRef.current.value = changingData.date;
+    contentRef.current.value = changingData.content;
+  }
+
+  console.log(changingData);
 
   return (
     <form className="mx-auto w-full grid gap-2" onSubmit={handleSubmit}>
@@ -79,14 +96,31 @@ const TakeInput = ({ addBlog, changingData }) => {
           ></textarea>
         </div>
       </div>
-      <div className="w-full flex justify-end">
-        <button
-          type="submit"
-          className=" text-white relative bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-6 py-3 cursor-pointer w-fit"
-          disabled={isBtnClicked}
-        >
-          Submit
-        </button>
+      <div className="w-full flex justify-end gap-2">
+        {isEditClicked ? (
+          <>
+            <button
+              className="transition-all duration-300 text-white relative bg-gray-500 hover:bg-gray-300 hover:text-black font-medium rounded-lg text-sm px-6 py-3 cursor-pointer w-fit"
+              onClick={() => {
+                setIsEditClicked(false);
+                setChangingData(null);
+              }}
+            >
+              Cancel
+            </button>
+            <button className="transition-all duration-300 text-white relative bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-6 py-3 cursor-pointer w-fit">
+              Update
+            </button>
+          </>
+        ) : (
+          <button
+            type="submit"
+            className=" text-white relative bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-6 py-3 cursor-pointer w-fit"
+            disabled={isBtnClicked}
+          >
+            Submit
+          </button>
+        )}
       </div>
     </form>
   );
