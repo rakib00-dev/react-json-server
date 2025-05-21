@@ -1,18 +1,18 @@
-import { useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const TakeInput = ({
   addBlog,
   changingData,
   isEditClicked,
   setIsEditClicked,
-  setChangingData,
+  updateBlog,
 }) => {
   const [isBtnClicked, setIsBtnClicked] = useState(false);
 
-  const titleRef = useRef();
-  const authorRef = useRef();
-  const dateRef = useRef();
-  const contentRef = useRef();
+  const [title, setTitle] = useState('');
+  const [author, setAuhtor] = useState('');
+  const [date, setDate] = useState('');
+  const [content, setContent] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,30 +22,41 @@ const TakeInput = ({
 
       if (isBtnClicked) return;
 
-      addBlog(
-        titleRef.current.value,
-        authorRef.current.value,
-        dateRef.current.value,
-        contentRef.current.value
-      );
+      addBlog(title, author, date, content);
     }
   };
 
-  if (changingData) {
-    titleRef.current.value = changingData.title;
-    authorRef.current.value = changingData.author;
-    dateRef.current.value = changingData.date;
-    contentRef.current.value = changingData.content;
-  }
+  useEffect(() => {
+    if (changingData) {
+      setTitle(changingData.title);
+      setAuhtor(changingData.author);
+      setDate(changingData.date);
+      setContent(changingData.content);
+    }
+  }, [changingData]);
 
-  console.log(changingData);
+  // console.log(changingData);
+
+  let refinedData;
+  if (changingData) {
+    refinedData = {
+      id: changingData.id,
+      title,
+      author,
+      date,
+      content,
+    };
+  }
 
   return (
     <>
       {isEditClicked ? (
         <form
           className="mx-auto w-full grid gap-2"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={(e) => {
+            e.preventDefault();
+            updateBlog(refinedData);
+          }}
         >
           <div className="grid md:grid-cols-2 gap-2">
             <div>
@@ -53,7 +64,8 @@ const TakeInput = ({
                 Title
               </label>
               <input
-                ref={titleRef}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 type="text"
                 id="title"
                 className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50  outline-none "
@@ -66,7 +78,8 @@ const TakeInput = ({
                 Author
               </label>
               <input
-                ref={authorRef}
+                value={author}
+                onChange={(e) => setAuhtor(e.target.value)}
                 type="text"
                 id="author"
                 className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50  outline-none "
@@ -79,7 +92,8 @@ const TakeInput = ({
                 Date
               </label>
               <input
-                ref={dateRef}
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
                 type="text"
                 id="date"
                 className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50  outline-none "
@@ -92,7 +106,8 @@ const TakeInput = ({
                 Content
               </label>
               <textarea
-                ref={contentRef}
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
                 name="content"
                 id="content"
                 className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 outline-none h-13"
@@ -111,7 +126,11 @@ const TakeInput = ({
             >
               Cancel
             </button>
-            <button className="transition-all duration-300 text-white relative bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-6 py-3 cursor-pointer w-fit">
+            <button
+              className="transition-all duration-300 text-white relative bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-6 py-3 cursor-pointer w-fit"
+              // type="submit"
+              onClick={() => console.log(refinedData)}
+            >
               Update
             </button>
           </div>
@@ -124,7 +143,8 @@ const TakeInput = ({
                 Title
               </label>
               <input
-                ref={titleRef}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 type="text"
                 id="title"
                 className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50  outline-none "
@@ -137,7 +157,8 @@ const TakeInput = ({
                 Author
               </label>
               <input
-                ref={authorRef}
+                value={author}
+                onChange={(e) => setAuhtor(e.target.value)}
                 type="text"
                 id="author"
                 className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50  outline-none "
@@ -150,7 +171,8 @@ const TakeInput = ({
                 Date
               </label>
               <input
-                ref={dateRef}
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
                 type="text"
                 id="date"
                 className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50  outline-none "
@@ -163,7 +185,8 @@ const TakeInput = ({
                 Content
               </label>
               <textarea
-                ref={contentRef}
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
                 name="content"
                 id="content"
                 className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 outline-none h-13"

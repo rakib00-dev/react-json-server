@@ -78,7 +78,7 @@ function App() {
         changingData={changingData}
         isEditClicked={isEditClicked}
         setIsEditClicked={setIsEditClicked}
-        setChangingData={setChangingData}
+        updateBlog={updateBlog}
       />
       <AddData
         data={data}
