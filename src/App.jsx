@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // components
 import TakeInput from './components/TakeInput';
@@ -6,6 +6,7 @@ import AddData from './components/AddData';
 
 function App() {
   const [data, setData] = useState([]);
+  const [changingData, setChangingData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,10 +46,33 @@ function App() {
     });
   };
 
+  // Bring data's
+  const bringData = (blog) => {
+    fetch(`http://localhost:8000/blogs/${blog.id}`)
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+
+    window.scrollTo(0, 0);
+    setChangingData(blog);
+  };
+
+  // update blogs
+  const updateBlog = (blog) => {
+    fetch(`http://localhost:8000/blogs/${blog.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(blog),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
+
   return (
-    <div className="max-w-5xl mx-auto p-4 m-10 mt-4 grid gap-5">
-      <TakeInput addBlog={addBlog} />
-      <AddData data={data} deleteBlog={deleteBlog} />
+    <div className=" max-w-5xl mx-auto p-4 m-10 mt-4 grid gap-5">
+      <TakeInput addBlog={addBlog} changingData={changingData} />
+      <AddData data={data} deleteBlog={deleteBlog} bringData={bringData} />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddData = ({ data, deleteBlog }) => {
+const AddData = ({ data, deleteBlog, bringData }) => {
   return (
     <div className="grid gap-5">
       {data.map((e, i) => (
@@ -22,7 +22,13 @@ const AddData = ({ data, deleteBlog }) => {
           </div>
 
           <div className="w-full flex justify-around gap-2">
-            <button className="transition-all duration-300 w-full rounded-md py-2 px-2 font-bold bg-green-500 text-white cursor-pointer hover:bg-green-200 hover:text-black">
+            <button
+              className="transition-all duration-300 w-full rounded-md py-2 px-2 font-bold bg-green-500 text-white cursor-pointer hover:bg-green-200 hover:text-black"
+              onClick={() => {
+                bringData(e);
+                writeData();
+              }}
+            >
               Edit
             </button>
             <button

@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 
-const TakeInput = ({ addBlog }) => {
+const TakeInput = ({ addBlog, changingData }) => {
   const [isBtnClicked, setIsBtnClicked] = useState(false);
 
   const titleRef = useRef();
