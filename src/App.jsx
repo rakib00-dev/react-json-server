@@ -72,6 +72,7 @@ function App() {
 
   return (
     <div className=" max-w-5xl mx-auto p-4 m-10 mt-4 grid gap-5">
+      <h1 className="text-4xl grid place-items-center">Json-server</h1>
       <TakeInput
         addBlog={addBlog}
         changingData={changingData}
