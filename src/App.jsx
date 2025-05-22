@@ -18,7 +18,7 @@ function App() {
     fetchData();
   }, []);
 
-  // adding blogs
+  // Adding blogs
   const addBlog = async (title, author, date, content) => {
     const dataType = {
       id: JSON.stringify(Date.now()),
